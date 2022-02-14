@@ -1,0 +1,467 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree",
+        "constructInfo": {
+          "fqn": "@aws-cdk/core.Construct",
+          "version": "1.116.0"
+        }
+      },
+      "KendraSearchToolStack": {
+        "id": "KendraSearchToolStack",
+        "path": "KendraSearchToolStack",
+        "children": {
+          "s3BucketForDataSource": {
+            "id": "s3BucketForDataSource",
+            "path": "KendraSearchToolStack/s3BucketForDataSource",
+            "children": {
+              "Notifications": {
+                "id": "Notifications",
+                "path": "KendraSearchToolStack/s3BucketForDataSource/Notifications",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.Construct",
+                  "version": "1.116.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "KendraSearchToolStack/s3BucketForDataSource/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                  "aws:cdk:cloudformation:props": {}
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-s3.CfnBucket",
+                  "version": "1.116.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-s3.Bucket",
+              "version": "1.116.0"
+            }
+          },
+          "kendraIndexRole": {
+            "id": "kendraIndexRole",
+            "path": "KendraSearchToolStack/kendraIndexRole",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "KendraSearchToolStack/kendraIndexRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "kendra.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.CfnRole",
+                  "version": "1.116.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "KendraSearchToolStack/kendraIndexRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "KendraSearchToolStack/kendraIndexRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "cloudwatch:PutMetricData",
+                              "Condition": {
+                                "StringEquals": {
+                                  "cloudwatch:namespace": "AWS/Kendra"
+                                }
+                              },
+                              "Effect": "Allow",
+                              "Resource": "*"
+                            },
+                            {
+                              "Action": "logs:DescribeLogGroups",
+                              "Effect": "Allow",
+                              "Resource": "*"
+                            },
+                            {
+                              "Action": "logs:CreateLogGroup",
+                              "Effect": "Allow",
+                              "Resource": "*"
+                            },
+                            {
+                              "Action": [
+                                "logs:DescribeLogStreams",
+                                "logs:CreateLogStream",
+                                "logs:PutLogEvents"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": "*"
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "kendraIndexRoleDefaultPolicy9408320C",
+                        "roles": [
+                          {
+                            "Ref": "kendraIndexRole82286EC9"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.CfnPolicy",
+                      "version": "1.116.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.Policy",
+                  "version": "1.116.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-iam.Role",
+              "version": "1.116.0"
+            }
+          },
+          "kendraDataSourceRole": {
+            "id": "kendraDataSourceRole",
+            "path": "KendraSearchToolStack/kendraDataSourceRole",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "KendraSearchToolStack/kendraDataSourceRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "kendra.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.CfnRole",
+                  "version": "1.116.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "KendraSearchToolStack/kendraDataSourceRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "KendraSearchToolStack/kendraDataSourceRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "s3:GetObject",
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:aws:s3:::",
+                                    {
+                                      "Ref": "s3BucketForDataSource0DCA55FE"
+                                    },
+                                    "/*"
+                                  ]
+                                ]
+                              }
+                            },
+                            {
+                              "Action": "s3:ListBucket",
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:aws:s3:::",
+                                    {
+                                      "Ref": "s3BucketForDataSource0DCA55FE"
+                                    }
+                                  ]
+                                ]
+                              }
+                            },
+                            {
+                              "Action": [
+                                "kendra:BatchPutDocument",
+                                "kendra:BatchDeleteDocument"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": "*"
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "kendraDataSourceRoleDefaultPolicy07E87493",
+                        "roles": [
+                          {
+                            "Ref": "kendraDataSourceRoleFD512BFD"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.CfnPolicy",
+                      "version": "1.116.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.Policy",
+                  "version": "1.116.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-iam.Role",
+              "version": "1.116.0"
+            }
+          },
+          "kendraIndexid": {
+            "id": "kendraIndexid",
+            "path": "KendraSearchToolStack/kendraIndexid",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::Kendra::Index",
+              "aws:cdk:cloudformation:props": {
+                "edition": "ENTERPRISE_EDITION",
+                "name": {
+                  "Ref": "s3BucketForDataSource0DCA55FE"
+                },
+                "roleArn": {
+                  "Fn::GetAtt": [
+                    "kendraIndexRole82286EC9",
+                    "Arn"
+                  ]
+                },
+                "description": "Kendra index for search tool"
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-kendra.CfnIndex",
+              "version": "1.116.0"
+            }
+          },
+          "DataSource": {
+            "id": "DataSource",
+            "path": "KendraSearchToolStack/DataSource",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::Kendra::DataSource",
+              "aws:cdk:cloudformation:props": {
+                "indexId": {
+                  "Ref": "kendraIndexid"
+                },
+                "name": {
+                  "Ref": "s3BucketForDataSource0DCA55FE"
+                },
+                "type": "S3",
+                "dataSourceConfiguration": {
+                  "s3Configuration": {
+                    "bucketName": {
+                      "Ref": "s3BucketForDataSource0DCA55FE"
+                    }
+                  }
+                },
+                "description": "S3 data source for search tool",
+                "roleArn": {
+                  "Fn::GetAtt": [
+                    "kendraDataSourceRoleFD512BFD",
+                    "Arn"
+                  ]
+                },
+                "schedule": "cron(0/2 * * * ? *)"
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-kendra.CfnDataSource",
+              "version": "1.116.0"
+            }
+          },
+          "cognitoUserPool": {
+            "id": "cognitoUserPool",
+            "path": "KendraSearchToolStack/cognitoUserPool",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::Cognito::UserPool",
+              "aws:cdk:cloudformation:props": {
+                "adminCreateUserConfig": {
+                  "allowAdminCreateUserOnly": false
+                },
+                "autoVerifiedAttributes": [
+                  "email"
+                ]
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-cognito.CfnUserPool",
+              "version": "1.116.0"
+            }
+          },
+          "cognitoUserPoolClient": {
+            "id": "cognitoUserPoolClient",
+            "path": "KendraSearchToolStack/cognitoUserPoolClient",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::Cognito::UserPoolClient",
+              "aws:cdk:cloudformation:props": {
+                "userPoolId": {
+                  "Ref": "cognitoUserPool"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-cognito.CfnUserPoolClient",
+              "version": "1.116.0"
+            }
+          },
+          "cognitoIdentityPool": {
+            "id": "cognitoIdentityPool",
+            "path": "KendraSearchToolStack/cognitoIdentityPool",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::Cognito::IdentityPool",
+              "aws:cdk:cloudformation:props": {
+                "allowUnauthenticatedIdentities": false
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-cognito.CfnIdentityPool",
+              "version": "1.116.0"
+            }
+          },
+          "repoforreactapp": {
+            "id": "repoforreactapp",
+            "path": "KendraSearchToolStack/repoforreactapp",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::CodeCommit::Repository",
+              "aws:cdk:cloudformation:props": {
+                "repositoryName": "reactRepo"
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-codecommit.CfnRepository",
+              "version": "1.116.0"
+            }
+          },
+          "amplifyReactApp": {
+            "id": "amplifyReactApp",
+            "path": "KendraSearchToolStack/amplifyReactApp",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::Amplify::App",
+              "aws:cdk:cloudformation:props": {
+                "name": "reactAppForKendra",
+                "environmentVariables": [
+                  {
+                    "name": "IDENTITY_POOL_ID",
+                    "value": {
+                      "Ref": "cognitoIdentityPool"
+                    }
+                  },
+                  {
+                    "name": "USER_POOL_ID",
+                    "value": {
+                      "Ref": "cognitoUserPool"
+                    }
+                  },
+                  {
+                    "name": "USER_POOL_CLIENT_ID",
+                    "value": {
+                      "Ref": "cognitoUserPoolClient"
+                    }
+                  },
+                  {
+                    "name": "REGION",
+                    "value": "us-east-1"
+                  }
+                ],
+                "repository": {
+                  "Fn::GetAtt": [
+                    "repoforreactapp",
+                    "CloneUrlHttp"
+                  ]
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-amplify.CfnApp",
+              "version": "1.116.0"
+            }
+          },
+          "KendraIndexId": {
+            "id": "KendraIndexId",
+            "path": "KendraSearchToolStack/KendraIndexId",
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.CfnOutput",
+              "version": "1.116.0"
+            }
+          },
+          "IdentityPoolId": {
+            "id": "IdentityPoolId",
+            "path": "KendraSearchToolStack/IdentityPoolId",
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.CfnOutput",
+              "version": "1.116.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "KendraSearchToolStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "KendraSearchToolStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnResource",
+                  "version": "1.116.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.Construct",
+              "version": "1.116.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "@aws-cdk/core.Stack",
+          "version": "1.116.0"
+        }
+      }
+    },
+    "constructInfo": {
+      "fqn": "@aws-cdk/core.App",
+      "version": "1.116.0"
+    }
+  }
+}
