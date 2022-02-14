@@ -1,0 +1,311 @@
+
+{
+  "Resources": {
+    "s3BucketForDataSource0DCA55FE": {
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Retain",
+      "DeletionPolicy": "Retain",
+      "Metadata": {
+        "aws:cdk:path": "KendraSearchToolStack/s3BucketForDataSource/Resource"
+      }
+    },
+    "kendraIndexRole82286EC9": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "kendra.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "KendraSearchToolStack/kendraIndexRole/Resource"
+      }
+    },
+    "kendraIndexRoleDefaultPolicy9408320C": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "cloudwatch:PutMetricData",
+              "Condition": {
+                "StringEquals": {
+                  "cloudwatch:namespace": "AWS/Kendra"
+                }
+              },
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": "logs:DescribeLogGroups",
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": "logs:CreateLogGroup",
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": [
+                "logs:DescribeLogStreams",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "kendraIndexRoleDefaultPolicy9408320C",
+        "Roles": [
+          {
+            "Ref": "kendraIndexRole82286EC9"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "KendraSearchToolStack/kendraIndexRole/DefaultPolicy/Resource"
+      }
+    },
+    "kendraDataSourceRoleFD512BFD": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "kendra.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "KendraSearchToolStack/kendraDataSourceRole/Resource"
+      }
+    },
+    "kendraDataSourceRoleDefaultPolicy07E87493": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:GetObject",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:aws:s3:::",
+                    {
+                      "Ref": "s3BucketForDataSource0DCA55FE"
+                    },
+                    "/*"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": "s3:ListBucket",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:aws:s3:::",
+                    {
+                      "Ref": "s3BucketForDataSource0DCA55FE"
+                    }
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "kendra:BatchPutDocument",
+                "kendra:BatchDeleteDocument"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "kendraDataSourceRoleDefaultPolicy07E87493",
+        "Roles": [
+          {
+            "Ref": "kendraDataSourceRoleFD512BFD"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "KendraSearchToolStack/kendraDataSourceRole/DefaultPolicy/Resource"
+      }
+    },
+    "kendraIndexid": {
+      "Type": "AWS::Kendra::Index",
+      "Properties": {
+        "Edition": "ENTERPRISE_EDITION",
+        "Name": {
+          "Ref": "s3BucketForDataSource0DCA55FE"
+        },
+        "RoleArn": {
+          "Fn::GetAtt": [
+            "kendraIndexRole82286EC9",
+            "Arn"
+          ]
+        },
+        "Description": "Kendra index for search tool"
+      },
+      "Metadata": {
+        "aws:cdk:path": "KendraSearchToolStack/kendraIndexid"
+      }
+    },
+    "DataSource": {
+      "Type": "AWS::Kendra::DataSource",
+      "Properties": {
+        "IndexId": {
+          "Ref": "kendraIndexid"
+        },
+        "Name": {
+          "Ref": "s3BucketForDataSource0DCA55FE"
+        },
+        "Type": "S3",
+        "DataSourceConfiguration": {
+          "S3Configuration": {
+            "BucketName": {
+              "Ref": "s3BucketForDataSource0DCA55FE"
+            }
+          }
+        },
+        "Description": "S3 data source for search tool",
+        "RoleArn": {
+          "Fn::GetAtt": [
+            "kendraDataSourceRoleFD512BFD",
+            "Arn"
+          ]
+        },
+        "Schedule": "cron(0/2 * * * ? *)"
+      },
+      "Metadata": {
+        "aws:cdk:path": "KendraSearchToolStack/DataSource"
+      }
+    },
+    "cognitoUserPool": {
+      "Type": "AWS::Cognito::UserPool",
+      "Properties": {
+        "AdminCreateUserConfig": {
+          "AllowAdminCreateUserOnly": false
+        },
+        "AutoVerifiedAttributes": [
+          "email"
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "KendraSearchToolStack/cognitoUserPool"
+      }
+    },
+    "cognitoUserPoolClient": {
+      "Type": "AWS::Cognito::UserPoolClient",
+      "Properties": {
+        "UserPoolId": {
+          "Ref": "cognitoUserPool"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "KendraSearchToolStack/cognitoUserPoolClient"
+      }
+    },
+    "cognitoIdentityPool": {
+      "Type": "AWS::Cognito::IdentityPool",
+      "Properties": {
+        "AllowUnauthenticatedIdentities": false
+      },
+      "Metadata": {
+        "aws:cdk:path": "KendraSearchToolStack/cognitoIdentityPool"
+      }
+    },
+    "repoforreactapp": {
+      "Type": "AWS::CodeCommit::Repository",
+      "Properties": {
+        "RepositoryName": "reactRepo"
+      },
+      "Metadata": {
+        "aws:cdk:path": "KendraSearchToolStack/repoforreactapp"
+      }
+    },
+    "amplifyReactApp": {
+      "Type": "AWS::Amplify::App",
+      "Properties": {
+        "Name": "reactAppForKendra",
+        "EnvironmentVariables": [
+          {
+            "Name": "IDENTITY_POOL_ID",
+            "Value": {
+              "Ref": "cognitoIdentityPool"
+            }
+          },
+          {
+            "Name": "USER_POOL_ID",
+            "Value": {
+              "Ref": "cognitoUserPool"
+            }
+          },
+          {
+            "Name": "USER_POOL_CLIENT_ID",
+            "Value": {
+              "Ref": "cognitoUserPoolClient"
+            }
+          },
+          {
+            "Name": "REGION",
+            "Value": "us-east-1"
+          }
+        ],
+        "Repository": {
+          "Fn::GetAtt": [
+            "repoforreactapp",
+            "CloneUrlHttp"
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "KendraSearchToolStack/amplifyReactApp"
+      }
+    },
+    "CDKMetadata": {
+      "Type": "AWS::CDK::Metadata",
+      "Properties": {
+        "Analytics": "v2:deflate64:H4sIAAAAAAAAE02QTW4DIQyFz5I9IR1V6jrpdJNuGk3UA1jgVO4ARvy0HSHunoHJoit/fvZ7RgxyGF7k0+4Iv3Gv9HwoigPKck2gZjGyiylklcR4cx85+dxpwsg5KKyiuUp8luU1qxn7cKMqCKwsExvsjlYvbEgtrd2oihmdDiDLKp2dxr82e4ME10e84i9HifvCZ8RwYTbiH4+G0PWrZ70CpaWpzadRsbWUZH+u57jGhEWA9YZuS1NP3tcq3uEHDu0H5LD7jkT7kNcci3La6h1GLeYSIAEAAA=="
+      },
+      "Metadata": {
+        "aws:cdk:path": "KendraSearchToolStack/CDKMetadata/Default"
+      }
+    }
+  },
+  "Outputs": {
+    "KendraIndexId": {
+      "Value": {
+        "Ref": "kendraIndexid"
+      }
+    },
+    "IdentityPoolId": {
+      "Value": {
+        "Ref": "cognitoIdentityPool"
+      }
+    }
+  }
+}
