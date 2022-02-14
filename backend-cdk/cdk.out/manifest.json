@@ -1,0 +1,281 @@
+{
+  "version": "13.0.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "KendraSearchToolStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://700774324243/us-east-1",
+      "properties": {
+        "templateFile": "KendraSearchToolStack.template.json",
+        "validateOnSynth": false
+      },
+      "metadata": {
+        "/KendraSearchToolStack/s3BucketForDataSource/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "s3BucketForDataSource0DCA55FE",
+            "trace": [
+              "new Bucket (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-kernel-JPXjo6/node_modules/@aws-cdk/aws-s3/lib/bucket.js:589:26)",
+              "/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8367:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8795:24)",
+              "Kernel._create (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8367:34)",
+              "Kernel.create (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8108:29)",
+              "KernelHost.processRequest (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9692:36)",
+              "KernelHost.run (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9655:22)",
+              "Immediate._onImmediate (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9656:46)",
+              "processImmediate (internal/timers.js:464:21)"
+            ]
+          }
+        ],
+        "/KendraSearchToolStack/kendraIndexRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "kendraIndexRole82286EC9",
+            "trace": [
+              "new Role (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-kernel-JPXjo6/node_modules/@aws-cdk/aws-iam/lib/role.js:72:22)",
+              "/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8367:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8795:24)",
+              "Kernel._create (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8367:34)",
+              "Kernel.create (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8108:29)",
+              "KernelHost.processRequest (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9692:36)",
+              "KernelHost.run (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9655:22)",
+              "Immediate._onImmediate (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9656:46)",
+              "processImmediate (internal/timers.js:464:21)"
+            ]
+          }
+        ],
+        "/KendraSearchToolStack/kendraIndexRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "kendraIndexRoleDefaultPolicy9408320C",
+            "trace": [
+              "new Policy (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-kernel-JPXjo6/node_modules/@aws-cdk/aws-iam/lib/policy.js:56:26)",
+              "Role.addToPrincipalPolicy (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-kernel-JPXjo6/node_modules/@aws-cdk/aws-iam/lib/role.js:209:34)",
+              "Role.addToPolicy (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-kernel-JPXjo6/node_modules/@aws-cdk/aws-iam/lib/role.js:221:21)",
+              "/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8183:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8795:24)",
+              "/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8183:107",
+              "Kernel._ensureSync (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8776:28)",
+              "Kernel.invoke (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8183:34)",
+              "KernelHost.processRequest (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9692:36)",
+              "KernelHost.run (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9655:22)",
+              "Immediate._onImmediate (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9656:46)",
+              "processImmediate (internal/timers.js:464:21)"
+            ]
+          }
+        ],
+        "/KendraSearchToolStack/kendraDataSourceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "kendraDataSourceRoleFD512BFD",
+            "trace": [
+              "new Role (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-kernel-JPXjo6/node_modules/@aws-cdk/aws-iam/lib/role.js:72:22)",
+              "/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8367:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8795:24)",
+              "Kernel._create (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8367:34)",
+              "Kernel.create (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8108:29)",
+              "KernelHost.processRequest (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9692:36)",
+              "KernelHost.run (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9655:22)",
+              "Immediate._onImmediate (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9656:46)",
+              "processImmediate (internal/timers.js:464:21)"
+            ]
+          }
+        ],
+        "/KendraSearchToolStack/kendraDataSourceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "kendraDataSourceRoleDefaultPolicy07E87493",
+            "trace": [
+              "new Policy (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-kernel-JPXjo6/node_modules/@aws-cdk/aws-iam/lib/policy.js:56:26)",
+              "Role.addToPrincipalPolicy (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-kernel-JPXjo6/node_modules/@aws-cdk/aws-iam/lib/role.js:209:34)",
+              "Role.addToPolicy (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-kernel-JPXjo6/node_modules/@aws-cdk/aws-iam/lib/role.js:221:21)",
+              "/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8183:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8795:24)",
+              "/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8183:107",
+              "Kernel._ensureSync (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8776:28)",
+              "Kernel.invoke (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8183:34)",
+              "KernelHost.processRequest (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9692:36)",
+              "KernelHost.run (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9655:22)",
+              "Immediate._onImmediate (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9656:46)",
+              "processImmediate (internal/timers.js:464:21)"
+            ]
+          }
+        ],
+        "/KendraSearchToolStack/kendraIndexid": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "kendraIndexid",
+            "trace": [
+              "/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8367:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8795:24)",
+              "Kernel._create (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8367:34)",
+              "Kernel.create (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8108:29)",
+              "KernelHost.processRequest (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9692:36)",
+              "KernelHost.run (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9655:22)",
+              "Immediate._onImmediate (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9656:46)",
+              "processImmediate (internal/timers.js:464:21)"
+            ]
+          }
+        ],
+        "/KendraSearchToolStack/DataSource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DataSource",
+            "trace": [
+              "/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8367:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8795:24)",
+              "Kernel._create (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8367:34)",
+              "Kernel.create (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8108:29)",
+              "KernelHost.processRequest (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9692:36)",
+              "KernelHost.run (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9655:22)",
+              "Immediate._onImmediate (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9656:46)",
+              "processImmediate (internal/timers.js:464:21)"
+            ]
+          }
+        ],
+        "/KendraSearchToolStack/cognitoUserPool": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cognitoUserPool",
+            "trace": [
+              "/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8367:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8795:24)",
+              "Kernel._create (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8367:34)",
+              "Kernel.create (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8108:29)",
+              "KernelHost.processRequest (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9692:36)",
+              "KernelHost.run (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9655:22)",
+              "Immediate._onImmediate (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9656:46)",
+              "processImmediate (internal/timers.js:464:21)"
+            ]
+          }
+        ],
+        "/KendraSearchToolStack/cognitoUserPoolClient": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cognitoUserPoolClient",
+            "trace": [
+              "/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8367:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8795:24)",
+              "Kernel._create (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8367:34)",
+              "Kernel.create (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8108:29)",
+              "KernelHost.processRequest (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9692:36)",
+              "KernelHost.run (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9655:22)",
+              "Immediate._onImmediate (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9656:46)",
+              "processImmediate (internal/timers.js:464:21)"
+            ]
+          }
+        ],
+        "/KendraSearchToolStack/cognitoIdentityPool": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cognitoIdentityPool",
+            "trace": [
+              "/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8367:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8795:24)",
+              "Kernel._create (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8367:34)",
+              "Kernel.create (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8108:29)",
+              "KernelHost.processRequest (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9692:36)",
+              "KernelHost.run (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9655:22)",
+              "Immediate._onImmediate (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9656:46)",
+              "processImmediate (internal/timers.js:464:21)"
+            ]
+          }
+        ],
+        "/KendraSearchToolStack/repoforreactapp": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "repoforreactapp",
+            "trace": [
+              "/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8367:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8795:24)",
+              "Kernel._create (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8367:34)",
+              "Kernel.create (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8108:29)",
+              "KernelHost.processRequest (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9692:36)",
+              "KernelHost.run (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9655:22)",
+              "Immediate._onImmediate (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9656:46)",
+              "processImmediate (internal/timers.js:464:21)"
+            ]
+          }
+        ],
+        "/KendraSearchToolStack/amplifyReactApp": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyReactApp",
+            "trace": [
+              "/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8367:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8795:24)",
+              "Kernel._create (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8367:34)",
+              "Kernel.create (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8108:29)",
+              "KernelHost.processRequest (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9692:36)",
+              "KernelHost.run (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9655:22)",
+              "Immediate._onImmediate (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9656:46)",
+              "processImmediate (internal/timers.js:464:21)"
+            ]
+          }
+        ],
+        "/KendraSearchToolStack/KendraIndexId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "KendraIndexId",
+            "trace": [
+              "/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8367:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8795:24)",
+              "Kernel._create (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8367:34)",
+              "Kernel.create (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8108:29)",
+              "KernelHost.processRequest (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9692:36)",
+              "KernelHost.run (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9655:22)",
+              "Immediate._onImmediate (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9656:46)",
+              "processImmediate (internal/timers.js:464:21)"
+            ]
+          }
+        ],
+        "/KendraSearchToolStack/IdentityPoolId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IdentityPoolId",
+            "trace": [
+              "/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8367:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8795:24)",
+              "Kernel._create (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8367:34)",
+              "Kernel.create (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8108:29)",
+              "KernelHost.processRequest (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9692:36)",
+              "KernelHost.run (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9655:22)",
+              "Immediate._onImmediate (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9656:46)",
+              "processImmediate (internal/timers.js:464:21)"
+            ]
+          }
+        ],
+        "/KendraSearchToolStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata",
+            "trace": [
+              "new MetadataResource (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-kernel-JPXjo6/node_modules/@aws-cdk/core/lib/private/metadata-resource.js:22:30)",
+              "/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-kernel-JPXjo6/node_modules/@aws-cdk/core/lib/private/synthesis.js:139:9",
+              "visit (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-kernel-JPXjo6/node_modules/@aws-cdk/core/lib/private/synthesis.js:200:9)",
+              "visit (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-kernel-JPXjo6/node_modules/@aws-cdk/core/lib/private/synthesis.js:197:9)",
+              "injectMetadataResources (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-kernel-JPXjo6/node_modules/@aws-cdk/core/lib/private/synthesis.js:128:5)",
+              "Object.synthesize (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-kernel-JPXjo6/node_modules/@aws-cdk/core/lib/private/synthesis.js:17:5)",
+              "App.synth (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-kernel-JPXjo6/node_modules/@aws-cdk/core/lib/stage.js:100:41)",
+              "/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8183:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8795:24)",
+              "/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8183:107",
+              "Kernel._ensureSync (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8776:28)",
+              "Kernel.invoke (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:8183:34)",
+              "KernelHost.processRequest (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9692:36)",
+              "KernelHost.run (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9655:22)",
+              "Immediate._onImmediate (/private/var/folders/v0/7xygbbkj3q783_9wn0l772gm0000gs/T/jsii-java-runtime2577887315696425338/lib/program.js:9656:46)",
+              "processImmediate (internal/timers.js:464:21)"
+            ]
+          }
+        ]
+      },
+      "displayName": "KendraSearchToolStack"
+    }
+  }
+}
