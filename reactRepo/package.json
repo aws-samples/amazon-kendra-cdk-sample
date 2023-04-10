@@ -6,7 +6,7 @@
     "@types/lodash.debounce": "^4.0.6",
     "@types/react-autocomplete": "^1.8.5",
     "aws-amplify": "^4.2.2",
-    "aws-sdk": "^2.917.0",
+    "aws-sdk": "^2.1354.0",
     "bootstrap": "^4.6.0",
     "env-cmd": "^10.1.0",
     "lodash": "^4.17.15",
